@@ -1,3 +1,10 @@
 Flask
 Flask_SQLAlchemy
+Flask-Login
+Flask-Migrate
 gunicorn
+Werkzeug
+Jinja2
+itsdangerous
+click
+python-dotenv
