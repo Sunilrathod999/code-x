@@ -1,0 +1,8 @@
+<svg width="100" height="60" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Market City Logo Recreation -->
+  <rect x="10" y="10" width="80" height="35" fill="#000" rx="3"/>
+  <rect x="15" y="15" width="70" height="15" fill="#FFD700" rx="2"/>
+  <path d="M40 20 L50 15 L60 20 L55 25 L45 25 Z" fill="#DC143C"/>
+  <text x="50" y="40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="7" font-weight="bold">MARKET CITY</text>
+  <text x="50" y="50" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="6">KURLA, MUMBAI</text>
+</svg>

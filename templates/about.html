@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">About <span class="text-success fw-bold">MTS Furnitech</span></h1>
+            
+            <div class="about-content">
+                <div class="mb-5 text-center">
+                    {{ content.content | safe }}
+                </div>
+                
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="feature-box">
+                            <i class="fas fa-tools fa-3x text-success mb-3"></i>
+                            <h4 class="fw-bold text-success">Professional Equipment</h4>
+                            <p>We use advanced tools and equipment to ensure every installation is done with precision and care.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-box">
+                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                            <h4 class="fw-bold text-primary">Experienced Team</h4>
+                            <p>Our skilled technicians have years of experience in furniture installation and assembly.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="feature-box">
+                            <i class="fas fa-clock fa-3x text-dark mb-3"></i>
+                            <h4 class="fw-bold text-dark">Fast Service</h4>
+                            <p>We understand your time is valuable. Our efficient processes ensure quick turnaround times.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-box">
+                            <i class="fas fa-dollar-sign fa-3x text-success mb-3"></i>
+                            <h4 class="fw-bold text-success">Affordable Pricing</h4>
+                            <p>Quality service doesn't have to be expensive. We offer competitive rates for all our services.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center bg-light p-4 rounded">
+                    <h3 class="mb-3">Our Commitment</h3>
+                    <p class="mb-4">We are committed to delivering <span class="fw-bold text-success">professional</span>, <span class="fw-bold text-primary">fast</span>, and <span class="fw-bold text-dark">affordable</span> furniture installation services that exceed your expectations.</p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a href="{{ url_for('contact') }}" class="btn btn-success btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Get a Quote
+                        </a>
+                        <a href="https://wa.me/{{ settings.whatsapp_number.replace('+', '').replace(' ', '') }}?text=Hello! I'd like to know more about your services." target="_blank" class="btn btn-outline-success btn-lg">
+                            <i class="fab fa-whatsapp me-2"></i>Chat with Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

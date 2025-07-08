@@ -1,0 +1,6 @@
+<svg width="100" height="60" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Reliance Logo Recreation -->
+  <circle cx="50" cy="22" r="18" fill="#C5995B"/>
+  <path d="M40 15 Q50 8 60 15 Q50 22 40 15" fill="white"/>
+  <text x="50" y="50" text-anchor="middle" fill="#333" font-family="Arial, sans-serif" font-size="14" font-weight="bold">Reliance</text>
+</svg>

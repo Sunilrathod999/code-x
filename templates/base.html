@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MTS Furnitech - Professional Furniture Installation{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url_for('index') }}">
+                <div class="logo-container me-2">
+                    {% if settings.logo_path %}
+                        <img src="{{ url_for('static', filename=settings.logo_path) }}" alt="MTS Furnitech" height="40" class="logo-image">
+                    {% else %}
+                        <div class="logo-placeholder">
+                            <i class="fas fa-tools text-success"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <span class="text-primary">MTS</span> Furnitech
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('services') }}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container mt-3">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' if category == 'success' else 'info' }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="text-success">MTS Furnitech</h5>
+                    <p class="mb-3">Professional furniture installation services for homes and offices.</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Contact Info</h6>
+                    <p class="mb-1">
+                        <i class="fas fa-phone text-success me-2"></i>
+                        <a href="tel:{{ settings.phone_number.replace(' ', '').replace('-', '') }}" class="text-white text-decoration-none">{{ settings.phone_number }}</a>
+                    </p>
+                    <p class="mb-1">
+                        <i class="fas fa-envelope text-success me-2"></i>
+                        <a href="mailto:{{ settings.email }}" class="text-white text-decoration-none">{{ settings.email }}</a>
+                    </p>
+                    <p class="mb-1">
+                        <i class="fas fa-map-marker-alt text-success me-2"></i>
+                        <small>{{ settings.address }}</small>
+                    </p>
+                    <p class="mb-0">
+                        <i class="fab fa-whatsapp text-success me-2"></i>
+                        <a href="https://wa.me/{{ settings.whatsapp_number.replace('+', '').replace(' ', '') }}" class="text-white text-decoration-none">
+                            {{ settings.whatsapp_number }}
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 MTS Furnitech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/{{ settings.whatsapp_number.replace('+', '').replace(' ', '') }}?text=Hello! I'm interested in your furniture installation services." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            <span>Message on WhatsApp</span>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

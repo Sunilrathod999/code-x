@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">Contact <span class="text-success fw-bold">MTS Furnitech</span></h1>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Send us a Message</h4>
+                            <form method="POST" class="contact-form">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="service_interest" class="form-label">Service Interested In <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="service_interest" name="service_interest" required>
+                                        <option value="">Select a service...</option>
+                                        <optgroup label="Office Furniture Installation">
+                                            <option value="Modular Furniture Installation">Modular Furniture Installation</option>
+                                            <option value="Executive Office Desk Installation">Executive Office Desk Installation</option>
+                                            <option value="Reception Desk Installation">Reception Desk Installation</option>
+                                            <option value="Modular Conference Table Installation">Modular Conference Table Installation</option>
+                                            <option value="Modular Cabin Table Installation">Modular Cabin Table Installation</option>
+                                            <option value="Wardrobe Installation">Wardrobe Installation</option>
+                                            <option value="Cabinet Installation">Cabinet Installation</option>
+                                            <option value="Office Workstation Installation">Office Workstation Installation</option>
+                                        </optgroup>
+                                        <optgroup label="Home Furniture Installation">
+                                            <option value="Bed Installation">Bed Installation</option>
+                                            <option value="Bedroom Wardrobe Installation">Bedroom Wardrobe Installation</option>
+                                            <option value="TV Unit Installation">TV Unit Installation</option>
+                                            <option value="Modular Kitchen Installation">Modular Kitchen Installation</option>
+                                        </optgroup>
+                                        <option value="Multiple Services">Multiple Services</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Please provide details about your furniture installation requirements..."></textarea>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-success btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Contact Info</h4>
+                            
+                            <div class="mb-4">
+                                <h6 class="fw-bold">
+                                    <i class="fas fa-phone text-primary me-2"></i>Phone
+                                </h6>
+                                <a href="tel:{{ settings.phone_number.replace(' ', '').replace('-', '') }}" class="text-decoration-none">
+                                    {{ settings.phone_number }}
+                                </a>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="fw-bold">
+                                    <i class="fas fa-envelope text-info me-2"></i>Email
+                                </h6>
+                                <a href="mailto:{{ settings.email }}" class="text-decoration-none">
+                                    {{ settings.email }}
+                                </a>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="fw-bold">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>Address
+                                </h6>
+                                <p class="mb-0">{{ settings.address }}</p>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <a href="https://wa.me/{{ settings.whatsapp_number.replace('+', '').replace(' ', '') }}?text=Hello! I need immediate assistance with furniture installation." target="_blank" class="btn btn-outline-success">
+                                    <i class="fab fa-whatsapp me-2"></i>Message on WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card shadow mt-4">
+                        <div class="card-body">
+                            <h6 class="fw-bold mb-3">Why Choose Us?</h6>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    <span class="fw-bold text-success">Professional</span> service
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-primary me-2"></i>
+                                    <span class="fw-bold text-primary">Fast</span> installation
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-dark me-2"></i>
+                                    <span class="fw-bold text-dark">Affordable</span> pricing
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Quality guarantee
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

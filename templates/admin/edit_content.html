@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Content - MTS Furnitech Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('admin_dashboard') }}">
+                <i class="fas fa-cogs me-2"></i>MTS Furnitech Admin
+            </a>
+            
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
+                    <i class="fas fa-dashboard me-1"></i>Dashboard
+                </a>
+                <a class="nav-link" href="{{ url_for('admin_logout') }}">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else 'success' if category == 'success' else 'info' }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Edit Content</h1>
+            </div>
+        </div>
+        
+        <!-- Logo Upload -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-image me-2"></i>Logo Management
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logo" class="form-label">Upload Logo</label>
+                                        <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+                                        <small class="form-text text-muted">Recommended size: 200x60 pixels</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    {% if settings.logo_path %}
+                                        <div class="mb-3">
+                                            <label class="form-label">Current Logo</label>
+                                            <br>
+                                            <img src="{{ url_for('static', filename=settings.logo_path) }}" alt="Current Logo" class="img-thumbnail" style="max-height: 60px;">
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-upload me-2"></i>Update Logo
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Information Settings -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-address-book me-2"></i>Contact Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone_number" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" 
+                                               value="{{ settings.phone_number }}" placeholder="+91 XXXXXXXXXX">
+                                        <small class="form-text text-muted">Include country code</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" name="email" 
+                                               value="{{ settings.email }}" placeholder="contact@company.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="whatsapp_number" class="form-label">WhatsApp Number</label>
+                                <input type="text" class="form-control" id="whatsapp_number" name="whatsapp_number" 
+                                       value="{{ settings.whatsapp_number }}" placeholder="+91XXXXXXXXXX">
+                                <small class="form-text text-muted">Include country code (e.g., +91XXXXXXXXXX)</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Business Address</label>
+                                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter complete business address">{{ settings.address }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Update Contact Information
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Home Page Content -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-home me-2"></i>Home Page Content
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <input type="hidden" name="section" value="home">
+                            <div class="mb-3">
+                                <label for="home_content" class="form-label">Home Page Description</label>
+                                <textarea class="form-control" id="home_content" name="content" rows="6">{{ home_content.content }}</textarea>
+                                <small class="form-text text-muted">This text appears on the home page below the main heading.</small>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save me-2"></i>Update Home Content
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- About Page Content -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            <i class="fas fa-info-circle me-2"></i>About Page Content
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <input type="hidden" name="section" value="about">
+                            <div class="mb-3">
+                                <label for="about_content" class="form-label">About Page Content</label>
+                                <textarea class="form-control" id="about_content" name="content" rows="8">{{ about_content.content }}</textarea>
+                                <small class="form-text text-muted">This text appears on the About Us page.</small>
+                            </div>
+                            <button type="submit" class="btn btn-info">
+                                <i class="fas fa-save me-2"></i>Update About Content
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

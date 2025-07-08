@@ -1,0 +1,10 @@
+<svg width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- HDFC Bank Logo Recreation -->
+  <rect x="10" y="15" width="25" height="25" fill="#DC143C" rx="2"/>
+  <rect x="15" y="20" width="15" height="4" fill="white" rx="1"/>
+  <rect x="15" y="26" width="15" height="4" fill="white" rx="1"/>
+  <rect x="15" y="32" width="15" height="4" fill="white" rx="1"/>
+  <rect x="40" y="15" width="70" height="25" fill="#003366" rx="2"/>
+  <text x="75" y="32" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">HDFC BANK</text>
+  <text x="75" y="43" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="6">We understand your world</text>
+</svg>
